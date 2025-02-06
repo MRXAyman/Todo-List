@@ -1,8 +1,19 @@
 /* eslint-disable react/prop-types */
 
 function Form({ description, setDescription }) {
+  function handlSubmit(e) {
+    e.preventDefault();
+    if (description === "") {
+      return alert("you must add a value");
+    }
+    const newItem= {
+      id: Date.now(),
+      description,
+      selected: false
+    };
+  }
   return (
-    <form className="form">
+    <form className="form" onSubmit={handlSubmit}>
       <div className="form-control">
         <input
           type="text"
