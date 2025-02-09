@@ -1,23 +1,30 @@
 /* eslint-disable react/prop-types */
 
-function Form({ description, setDescription }) {
+function Form({ description, setDescription,onAddItem }) {
+
+
   function handlSubmit(e) {
     e.preventDefault();
     if (description === "") {
       return alert("you must add a value");
     }
+
+
     const newItem= {
       id: Date.now(),
-      description,
+      description: description,
       selected: false
     };
+    onAddItem(newItem); 
+    setDescription("");
   }
+
   return (
     <form className="form" onSubmit={handlSubmit}>
       <div className="form-control">
         <input
           type="text"
-          placeholder="Enter a task"
+          placeholder="Enter a task" 
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
@@ -27,3 +34,4 @@ function Form({ description, setDescription }) {
   );
 }
 export default Form;
+ 
